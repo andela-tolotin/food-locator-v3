@@ -299,3 +299,10 @@ nav h1 a {
     padding-bottom: 10px;
   }
 }
+
+@media screen and (min-width: 444px)  {
+  .filter-options {
+    text-align: left;
+    height: 80px;
+  }
+}
