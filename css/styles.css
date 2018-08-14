@@ -284,9 +284,18 @@ nav h1 a {
   margin: auto;
 }
 
-@media screen and (min-width: 300px)  {
+@media screen and (min-width: 250px)  {
   .filter-options {
     text-align: center;
     height: 150px;
+  }
+
+  #restaurants-list li {
+    padding: 0;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
   }
 }
