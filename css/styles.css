@@ -51,6 +51,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
   padding: 25px;
   text-align: center;
   text-transform: uppercase;
+  clear: both;
 }
 /* ====================== Navigation ====================== */
 nav {
@@ -304,5 +305,22 @@ nav h1 a {
   .filter-options {
     text-align: left;
     height: 80px;
+  }
+}
+
+
+@media screen and (min-width: 650px)  {
+  #restaurants-list li {
+    margin-bottom: 25px;
+    margin-left: 22px;
+    float: left;
+    width: 46%;
+  }
+}
+
+@media screen and (min-width: 980px)  {
+  #restaurants-list li {
+    margin-left: 25px;
+    width: 30%;
   }
 }
