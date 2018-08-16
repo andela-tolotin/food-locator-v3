@@ -264,7 +264,7 @@ nav h1 a {
 }
 #reviews-list li {
   background-color: #fff;
-    border: 2px solid #f3f3f3;
+  border: 2px solid #f3f3f3;
   display: block;
   list-style-type: none;
   margin: 0 0 30px;
@@ -281,11 +281,12 @@ nav h1 a {
 }
 
 .restaurants-list {
-  max-width: 120em;
+  width: 100%;
+  max-width: 150em;
   margin: auto;
 }
 
-@media screen and (min-width: 250px)  {
+@media screen and (min-width: 240px)  {
   .filter-options {
     text-align: center;
     height: 150px;
@@ -298,6 +299,44 @@ nav h1 a {
     margin: 0;
     margin-bottom: 15px;
     padding-bottom: 10px;
+  }
+
+  /* Review page*/
+  .inside #map-container {
+    margin: auto;
+    height: 800px;
+    position: relative;
+    width: 92.5%;
+    top: 140px;
+  }
+
+  #breadcrumb {
+    margin: 0;
+    width: 100%;
+  }
+
+  #restaurant-container, #reviews-container {
+    border-bottom: 1px solid #d9d9d9;
+    border-top: 1px solid #fff;
+    margin: 0;
+    width: 100%;
+  }
+
+  #restaurant-img {
+    width: 100%;
+    margin: 0;
+  }
+
+  .inside #footer {
+    width: 100%;
+  }
+
+  #restaurant-cuisine {
+    width: 100%;
+  }
+
+  #reviews-list li {
+    width: 100%;
   }
 }
 
