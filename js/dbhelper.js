@@ -9,7 +9,8 @@ class DBHelper {
    */
   static get DATABASE_URL() {
     const port = 8080 // Change this to your server port
-    return `http://localhost:${port}/data/restaurants.json`;
+    //http://localhost:${port}
+    return `/data/restaurants.json`;
   }
 
   /**
@@ -183,5 +184,17 @@ class DBHelper {
     return marker;
   } */
 
+  /**
+  * Register Service Worker
+  */
+  static registerServiceWorker() {
+    if (!navigator.serviceWorker) return;
+    navigator.serviceWorker.register('serviceWorker.js')
+      .then(() => {
+        console.log("Service Worker successfully installed");
+    });
+  }
 }
+// Activate the service worker
+DBHelper.registerServiceWorker();
 
