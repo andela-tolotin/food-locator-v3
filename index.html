@@ -29,15 +29,15 @@
       <div id="map"></div>
     </section>
     <section>
-      <div class="filter-options">
+      <div class="filter-options" aria-label="filter options" tabindex="0" role="menu" id="filter-options">
         <h2 title="header for filter results">Filter Results</h2>
         <label>
-          <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
+          <select id="neighborhoods-select" name="neighborhoods" role="list" aria-label="neighborhoods" onchange="updateRestaurants()">
             <option value="all">All Neighborhoods</option>
           </select>
         </label>
         <label>
-          <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()">
+          <select id="cuisines-select" name="cuisines" role="list" aria-label="cuisines" onchange="updateRestaurants()">
             <option value="all">All Cuisines</option>
           </select>
         </label>
