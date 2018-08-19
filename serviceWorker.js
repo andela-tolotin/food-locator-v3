@@ -3,7 +3,7 @@ const cacheVersion = `${cacheName}::1.0.0`;
 
 const cachedFiles = [
   './',
-  '/img/',
+  './img/',
   './css/styles.css',
   './js/main.js',
   './js/dbhelper.js',
