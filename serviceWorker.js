@@ -11,7 +11,6 @@ const cachedFiles = [
   '/data/restaurants.json',
   '/restaurant.html',
   'https://unpkg.com/leaflet@1.3.1/dist/images/marker-icon-2x.png',
-  '//normalize-css.googlecode.com/svn/trunk/normalize.css',
   'https://unpkg.com/leaflet@1.3.1/dist/leaflet.css',
   'manifest.json',
   'https://unpkg.com/leaflet@1.3.1/dist/leaflet.js',
