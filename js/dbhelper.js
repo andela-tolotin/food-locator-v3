@@ -195,6 +195,7 @@ class DBHelper {
     });
   }
 }
+
 // Activate the service worker
 DBHelper.registerServiceWorker();
 
