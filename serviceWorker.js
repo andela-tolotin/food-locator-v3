@@ -2,14 +2,14 @@ const cacheName = 'food-locator';
 const cacheVersion = `${cacheName}::1.0.0`;
 
 const cachedFiles = [
-  '/',
+  './',
   '/img/',
-  '/css/styles.css',
-  '/js/main.js',
-  '/js/dbhelper.js',
-  '/js/restaurant_info.js',
-  '/data/restaurants.json',
-  '/restaurant.html',
+  './css/styles.css',
+  './js/main.js',
+  './js/dbhelper.js',
+  './js/restaurant_info.js',
+  './data/restaurants.json',
+  './restaurant.html',
   'https://unpkg.com/leaflet@1.3.1/dist/images/marker-icon-2x.png',
   'https://unpkg.com/leaflet@1.3.1/dist/leaflet.css',
   'manifest.json',
