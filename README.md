@@ -2,7 +2,7 @@
 ---
 #### _Three Stage Course Material Project - Restaurant Reviews_
 
-## GitHub Page
+## GitHub Page for Stage 1
 `https://andela-tolotin.github.io/food-locator/`
 
 ## Project Overview: Stage 1
