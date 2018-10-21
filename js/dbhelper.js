@@ -8,28 +8,31 @@ class DBHelper {
    * Change this to restaurants.json file location on your server.
    */
   static get DATABASE_URL() {
-    const port = 8080 // Change this to your server port
+    const port = 1337 // Change this to your server port
     //http://localhost:${port}
-    return `./data/restaurants.json`;
+    return 'http://localhost:1337/restaurants';
+  }
+
+  static openDb() {
+    let dbPromise = idb.open('food_locator-db', 1, (upgradeDb) => {
+      let location = upgradeDb.createObjectStore('restaurants',  {autoIncrement: true});
+    });
+
+    return dbPromise;
   }
 
   /**
    * Fetch all restaurants.
    */
   static fetchRestaurants(callback) {
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', DBHelper.DATABASE_URL);
-    xhr.onload = () => {
-      if (xhr.status === 200) { // Got a success response from server!
-        const json = JSON.parse(xhr.responseText);
-        const restaurants = json.restaurants;
-        callback(null, restaurants);
-      } else { // Oops!. Got an error from server.
-        const error = (`Request failed. Returned status of ${xhr.status}`);
-        callback(error, null);
-      }
-    };
-    xhr.send();
+    fetch(DBHelper.DATABASE_URL).then((response) => {
+      return response.json();
+    }).then((restaurants) => {
+      // Save the JSON response to DB
+      DBHelper.save(restaurants);
+      callback(null, restaurants);
+    }).catch(error => console.log(error));
+
   }
 
   /**
@@ -151,8 +154,8 @@ class DBHelper {
    * Restaurant image URL.
    */
   static imageUrlForRestaurant(restaurant) {
-    let mobileImage = `img/mobile_${restaurant.photograph}`;
-    let mediumImage = `img/${restaurant.photograph}`;
+    let mobileImage = `img/mobile_${restaurant.id}.jpg`;
+    let mediumImage = `img/${restaurant.id}.jpg`;
 
     return {
       smallImgSrc: mobileImage,
@@ -194,8 +197,28 @@ class DBHelper {
         console.log("Service Worker successfully installed");
     });
   }
+
+  static save(restaurants) {
+    DBHelper.openDb().then((db) => {
+      if (!db) return;
+
+      let tx = db.transaction('restaurants', 'readwrite');
+      let store = tx.objectStore('restaurants');
+
+      for (let restaurant of restaurants) {
+        store.put(restaurant);
+      }
+      // limit store to 10 items
+      store.openCursor(null, "prev").then(cursor => {
+        return cursor.advance(10);
+      }).then(function deleteRest(cursor) {
+        if (!cursor) return;
+        cursor.delete();
+        return cursor.continue().then(deleteRest);
+      });
+    });
+  }
 }
 
-// Activate the service worker
 DBHelper.registerServiceWorker();
 

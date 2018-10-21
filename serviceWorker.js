@@ -23,16 +23,17 @@ const cachedFiles = [
   './img/mobile_8.jpg',
   './img/mobile_9.jpg',
   './img/mobile_10.jpg',
-  './css/styles.css',
-  './js/main.js',
+  './build/css/all.css',
+  './js/idb.js',
   './js/dbhelper.js',
+  './js/main.js',
   './js/restaurant_info.js',
-  './data/restaurants.json',
   './restaurant.html',
   'https://unpkg.com/leaflet@1.3.1/dist/images/marker-icon-2x.png',
   'https://unpkg.com/leaflet@1.3.1/dist/leaflet.css',
   'manifest.json',
   'https://unpkg.com/leaflet@1.3.1/dist/leaflet.js',
+  'https://api.tiles.mapbox.com/v4/mapbox.streets/16/19308/24633.jpg70?access_token=pk.eyJ1IjoibGF6dG9wYXoiLCJhIjoiY2prbDJ5YmphMXF3NTNrb2c3MWVwd3J3cyJ9.A5kR6w5IyetjxUCi1huHdg'
 ];
 
 const networkFiles = [];

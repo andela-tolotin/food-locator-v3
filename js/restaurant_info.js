@@ -60,8 +60,11 @@ fetchRestaurantFromURL = (callback) => {
     callback(null, self.restaurant)
     return;
   }
+
+  const route = window.location.pathname;
   const id = getParameterByName('id');
-  if (!id) { // no id found in URL
+
+  if (!id && route !== '/') { // no id found in URL
     error = 'No restaurant id in URL'
     callback(error, null);
   } else {
