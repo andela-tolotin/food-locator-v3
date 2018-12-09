@@ -232,9 +232,16 @@ class DBHelper {
     return new Promise((resolve, reject) => {
       DBHelper.getAllReviews().then((reviews) => {
         let filteredReviews = reviews.filter(review => review.restaurant_id == id);
-        lastId = filteredReviews.length;
-        resolve(parseInt(parseInt(lastId) + 1));
+        let lastReview = filteredReviews[filteredReviews.length - 1];
+        resolve(parseInt(parseInt(lastReview.id) + 1));
       });
+    });
+  }
+
+  static sortByKey(array, key) {
+    return array.sort(function(a, b) {
+        var x = a[key]; var y = b[key];
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
     });
   }
 

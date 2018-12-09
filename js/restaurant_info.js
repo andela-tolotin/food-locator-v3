@@ -372,6 +372,7 @@ const submitReview = () => {
     // Save the review
     DBHelper.saveComment(data);
     window.location.href = url;
+
     console.log(err);
   });
 }
