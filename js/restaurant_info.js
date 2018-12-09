@@ -86,6 +86,7 @@ fetchRestaurantFromURL = (callback) => {
 fillRestaurantHTML = (restaurant = self.restaurant) => {
   const name = document.getElementById('restaurant-name');
   name.innerHTML = restaurant.name;
+  name.title = restaurant.name;;
 
   const address = document.getElementById('restaurant-address');
   address.innerHTML = restaurant.address;
@@ -220,7 +221,9 @@ createReviewForm = (review) => {
   const formId = document.getElementById('comment_form');
 
   const heading = document.createElement('h2'); // Heading of Form
-  heading.innerHTML = 'You got a comment?';
+  const headerText = 'You got a comment?';
+  heading.innerHTML = headerText;
+  heading.title = headerText;
   formId.appendChild(heading);
 
   var line = document.createElement('hr'); // Giving Horizontal Row After Heading
