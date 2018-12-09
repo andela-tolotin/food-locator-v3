@@ -394,6 +394,18 @@ input[type="submit"] {
     cursor: pointer;
 }
 
+/* Favourite */
+span.favourite,
+span.unfavourite {
+    float: right;
+    color:red; font-size: 30px;
+}
+
+span.unfavourite {
+    color:black;
+}
+
+
 /* The slider itself */
 .slider {
   -webkit-appearance: none;  /* Override default CSS styles */

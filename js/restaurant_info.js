@@ -89,7 +89,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   name.title = restaurant.name;;
 
   const address = document.getElementById('restaurant-address');
-  address.innerHTML = restaurant.address;
+  address.innerHTML = restaurant.address + '<span class="unfavourite">&hearts;</span>';
 
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img'
