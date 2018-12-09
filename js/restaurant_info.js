@@ -89,7 +89,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   name.title = restaurant.name;;
 
   const address = document.getElementById('restaurant-address');
-  address.innerHTML = restaurant.address + '<span class="unfavourite">&hearts;</span>';
+  address.innerHTML = restaurant.address + '<span class="unfavourite" id="favourite">&hearts;</span>';
 
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img'
@@ -111,6 +111,41 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   }
   // fill reviews
   fillReviewsHTML();
+
+  let favElement = document.getElementById('favourite');
+
+  favElement.addEventListener('click', function() {
+    let className = this.className;
+    const restaurantId = getParameterByName('id');
+
+    const favouriteUrl  = `http://localhost:1337/restaurants/${restaurantId}/?is_favorite=true`;
+    const UnfavouriteUrl  = `http://localhost:1337/restaurants/${restaurantId}/?is_favorite=false`;
+
+    if ('favourite' === className) {
+      this.className = 'unfavourite';
+       // Unfavourite a restuarant
+      favouriteARestuarant(UnfavouriteUrl).then((response) => {
+        console.log(response);
+      }).catch((err) => {
+        console.log(err);
+      });
+    } else {
+      this.className = 'favourite';
+      // Favourite a restuarant
+       favouriteARestuarant(favouriteUrl).then((response) => {
+        console.log(response);
+      }).catch((err) => {
+        console.log(err);
+      });
+    }
+  });
+}
+
+ favouriteARestuarant = (url) =>  {
+  return fetch(url, {
+    method: 'PUT',
+    mode: 'cors'
+  }).then(response => response.json())
 }
 
 /**
