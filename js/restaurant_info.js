@@ -319,6 +319,10 @@ const submitReview = () => {
     data.id = lastId;
   });
 
+  if (data.rating === undefined && data.comments === undefined) {
+    return alert('Pls add your review');
+  }
+
   // Post Reviews
   DBHelper.postReviewToServer(data).then((review) => {
     window.location.href = url;

@@ -259,6 +259,7 @@ class DBHelper {
 
       let tx = db.transaction('reviews', 'readwrite');
       let store = tx.objectStore('reviews');
+
       let request = store.put(data);
 
       request.onsuccess = function(e) {
