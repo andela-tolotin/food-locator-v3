@@ -239,6 +239,7 @@ createReviewForm = (review) => {
   CommentorName.type ='text';
   CommentorName.setAttribute('value', '');
   CommentorName.required = 'required';
+  CommentorName.tabIndex = 11;
   CommentorName.onchange = function() {
     data.name = this.value;
   }
@@ -260,6 +261,7 @@ createReviewForm = (review) => {
     rating.max = 5;
     rating.setAttribute('value', 1);
     rating.step = 1;
+    rating.tabIndex = 12;
     rating.required = 'required';
     rating.onchange = function() {
       data.rating = this.value;
@@ -281,6 +283,7 @@ createReviewForm = (review) => {
   comment.id = 'comment';
   comment.setAttribute('value', '');
   comment.required = 'required';
+  comment.tabIndex = 13;
   comment.onchange = function() {
     data.comments = this.value;
   }
@@ -299,6 +302,7 @@ createReviewForm = (review) => {
   submitelement.type = 'submit';
   submitelement.name = 'submit';
   submitelement.id = 'submit';
+  comment.tabIndex = 14;
   submitelement.value = 'Submit';
   submitelement.onclick = function() {
     submitReview();
