@@ -22,5 +22,5 @@ gulp.task('processCSS', function(cb) {
 
 
 gulp.task('watch', function() {
-    gulp.watch(['css/*.css', 'js/*.js'], ['processCSS', 'clean']);
+    gulp.watch(['css/*.css'], ['processCSS', 'clean']);
 });

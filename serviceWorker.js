@@ -3,6 +3,7 @@ const cacheVersion = `${cacheName}::1.0.0`;
 
 const cachedFiles = [
   './',
+  './img/icon@2x.png',
   './img/1.jpg',
   './img/2.jpg',
   './img/3.jpg',
@@ -29,6 +30,8 @@ const cachedFiles = [
   './js/main.js',
   './js/restaurant_info.js',
   './restaurant.html',
+  'http://localhost:1337/reviews',
+  'http://localhost:1337/restaurants',
   'https://unpkg.com/leaflet@1.3.1/dist/images/marker-icon-2x.png',
   'https://unpkg.com/leaflet@1.3.1/dist/leaflet.css',
   'manifest.json',
@@ -69,7 +72,7 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   if (networkFiles.filter(item => event.request.url.match(item)).length) {
     console.log('[network fetch]', event.request.url);
-
+    // If network is good send the reviews up
     event.respondWith(
       caches.match(event.request)
       .then(response => response || fetch(event.request))
@@ -81,13 +84,10 @@ self.addEventListener('fetch', event => {
     event.respondWith(
       caches.match(event.request)
       .then(response => {
-
         caches.open(cacheVersion).then(cache => cache.add(event.request.url));
-        return response || fetch(event.request)
-
+        return response || fetch(event.request);
       })
     );
-
   }
 
 });

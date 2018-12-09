@@ -14,8 +14,15 @@ class DBHelper {
   }
 
   static openDb() {
-    let dbPromise = idb.open('food_locator-db', 1, (upgradeDb) => {
-      let location = upgradeDb.createObjectStore('restaurants',  {autoIncrement: true});
+    let dbPromise = idb.open('food_locator-db', 2, (upgradeDb) => {
+      upgradeDb.createObjectStore('restaurants',  {autoIncrement: true});
+      if (!upgradeDb.objectStoreNames.contains('reviews')) {
+        let reviews = upgradeDb.createObjectStore('reviews', {
+          keyPath: 'id'
+        });
+
+        reviews.createIndex('id', 'id');
+      }
     });
 
     return dbPromise;
@@ -217,6 +224,67 @@ class DBHelper {
         return cursor.continue().then(deleteRest);
       });
     });
+  }
+
+  static getLastReviewId() {
+    const id = getParameterByName('id');
+    let lastId = 0;
+    return new Promise((resolve, reject) => {
+      DBHelper.getAllReviews().then((reviews) => {
+        let filteredReviews = reviews.filter(review => review.restaurant_id == id);
+        lastId = filteredReviews.length;
+        resolve(parseInt(parseInt(lastId) + 1));
+      });
+    });
+  }
+
+  static getAllReviews() {
+    return new Promise((resolve, reject) => {
+      DBHelper.openDb().then((db) => {
+          if (!db) return;
+  
+          let tx = db.transaction('reviews')
+            .objectStore('reviews')
+            tx.getAll().then(reviews => {
+            resolve(reviews);
+          });
+        });
+      }
+    );
+  }
+
+  static saveComment(data) {
+    DBHelper.openDb().then((db) => {
+      if (!db) return;
+
+      let tx = db.transaction('reviews', 'readwrite');
+      let store = tx.objectStore('reviews');
+      let request = store.put(data);
+
+      request.onsuccess = function(e) {
+        // Execute the callback function.
+        console.log(e);
+      };
+      // Handle errors.
+      console.log(request.onerror);
+    });
+  }
+
+static postReviewToServer(data) {
+  data.sent = true;
+  const url = 'http://localhost:1337/reviews/';
+  return fetch(url, {
+    method: 'POST',
+    mode: 'cors',
+    cache: 'no-cache',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+    redirect: 'follow',
+    referrer: 'no-referrer',
+    body: JSON.stringify(data),
+    }).then(response => response.json())
   }
 }
 
