@@ -329,7 +329,7 @@ const submitReview = () => {
   }).catch((err) => {
     data.sent = false;
     // Alert the user that they are not online
-    alert('You appears to be offline, you comment has been saved and will sent when you\'re online');
+    alert('You appeared to be offline, your comment has been saved and will be sent automatically when you\'re online');
     // Save the review
     DBHelper.saveComment(data);
     window.location.href = url;
